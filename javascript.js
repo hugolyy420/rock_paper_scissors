@@ -1,5 +1,6 @@
 //Add btn elements into variables
 const btns = document.querySelectorAll("button");
+const div = document.createElement("div");
 let playerScore = 0;
 let computerScore = 0;
 
@@ -12,28 +13,28 @@ function getComputerChoice () {
 function playRound (playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "scissors") {
         playerScore++;
-         console.log(`You win! Rock beats scissors. Player's score : ${playerScore} and computer's score : ${computerScore}`)
+         div.textContent = `You win! Rock beats scissors. Player's score : ${playerScore} and computer's score : ${computerScore}`
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock") {
         playerScore++;
-        console.log (`You win! Paper beats rock. Player's score : ${playerScore} and computer's score : ${computerScore}`) 
+        div.textContent = `You win! Paper beats rock. Player's score : ${playerScore} and computer's score : ${computerScore}`
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper") {
         playerScore++;
-        console.log (`You win! Scissors beats paper. Player's score : ${playerScore} and computer's score : ${computerScore}`)
+        div.textContent = `You win! Scissors beats paper. Player's score : ${playerScore} and computer's score : ${computerScore}`
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "paper") {
         computerScore++;
-        console.log (`You lose! Paper beats rock. Player's score : ${playerScore} and computer's score : ${computerScore}`)   
+        div.textContent = `You lose! Paper beats rock. Player's score : ${playerScore} and computer's score : ${computerScore}`  
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "scissors") {
         computerScore++;
-        console.log (`You lose! Scissors beats paper. Player's score : ${playerScore} and computer's score : ${computerScore}`)   
+        div.textContent = `You lose! Scissors beats paper. Player's score : ${playerScore} and computer's score : ${computerScore}`
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "rock") {
         computerScore++;
-        console.log (`You lose! Rock beats scissors. Player's score : ${playerScore} and computer's score : ${computerScore}`)   
+        div.textContent = `You lose! Rock beats scissors. Player's score : ${playerScore} and computer's score : ${computerScore}`
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "rock") {
-        console.log (`It is a tie! Rock ties with rock. Player's score : ${playerScore} and computer's score : ${computerScore}`)     
+        div.textContent = `It is a tie! Rock ties with rock. Player's score : ${playerScore} and computer's score : ${computerScore}`
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "paper") {
-        console.log (`It is a tie! Paper ties with paper. Player's score : ${playerScore} and computer's score : ${computerScore}`)
+        div.textContent = `It is a tie! Paper ties with paper. Player's score : ${playerScore} and computer's score : ${computerScore}`
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "scissors") {
-        console.log (`It is a tie! Scissors ties with scissors. Player's score : ${playerScore} and computer's score : ${computerScore}`)
+        div.textContent = `It is a tie! Scissors ties with scissors. Player's score : ${playerScore} and computer's score : ${computerScore}`
     }
 }
 
@@ -58,6 +59,8 @@ btns.forEach((btn) => {
         playRound(e.target.innerText, getComputerChoice ());
     })
 })
+
+document.body.appendChild(div);
 
 // Add event listener to hear the click event and fire off the playRound function
 // How to get the choice into the playerSelection argument?
