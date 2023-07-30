@@ -4,6 +4,11 @@ const firstResultAnnouncer = document.querySelector("#intro-container").firstEle
 const secondResultAnnouncer = document.querySelector("#intro-container").lastElementChild;
 const playerScoreAnnouncer = document.querySelector('#player-score');
 const computerScoreAnnouncer = document.querySelector('#computer-score');
+const playerImage = document.getElementById("player-image");
+const computerImage = document.getElementById("computer-image");
+const closeBtn = document.getElementById("closeModal");
+const modal = document.getElementById("modal");
+const finalResult = document.querySelector(".modal-inner").firstElementChild;
 
 let playerScore = 0;
 let computerScore = 0;
@@ -17,13 +22,17 @@ function getComputerChoice () {
 function playRound (playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "scissors") {
         playerScore++;
-        playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`
-        computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`
-        firstResultAnnouncer.textContent = "You win!"
-        secondResultAnnouncer.textContent = "Rock beats scissors." 
-         checkResult()
+        playerImage.src = "img/rock.png";
+        computerImage.src = "img/scissors.png";
+        playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`;
+        computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`;
+        firstResultAnnouncer.textContent = "You win!";
+        secondResultAnnouncer.textContent = "Rock beats scissors.";
+         checkResult();
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock") {
         playerScore++;
+        playerImage.src = "img/paper.png";
+        computerImage.src = "img/rock.png";
         playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`
         computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`
         firstResultAnnouncer.textContent = "You win!"
@@ -31,6 +40,8 @@ function playRound (playerSelection, computerSelection) {
         checkResult()
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper") {
         playerScore++;
+        playerImage.src = "img/scissors.png";
+        computerImage.src = "img/paper.png";
         playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`
         computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`
         firstResultAnnouncer.textContent = "You win!"
@@ -38,6 +49,8 @@ function playRound (playerSelection, computerSelection) {
         checkResult()
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "paper") {
         computerScore++;
+        playerImage.src = "img/rock.png";
+        computerImage.src = "img/paper.png";
         playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`
         computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`
         firstResultAnnouncer.textContent = "You lose..."
@@ -45,6 +58,8 @@ function playRound (playerSelection, computerSelection) {
         checkResult()
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "scissors") {
         computerScore++;
+        playerImage.src = "img/paper.png";
+        computerImage.src = "img/scissors.png";
         playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`
         computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`
         firstResultAnnouncer.textContent = "You lose..."
@@ -52,22 +67,30 @@ function playRound (playerSelection, computerSelection) {
         checkResult()
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "rock") {
         computerScore++;
+        playerImage.src = "img/scissors.png";
+        computerImage.src = "img/rock.png";
         playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`
         computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`
         firstResultAnnouncer.textContent = "You lose..."
         secondResultAnnouncer.textContent = "Rock beats scissors." 
         checkResult()
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "rock") {
+        playerImage.src = "img/rock.png";
+        computerImage.src = "img/rock.png";
         playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`
         computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`
         firstResultAnnouncer.textContent = "It is a tie!"
         secondResultAnnouncer.textContent = "Rock ties with rock." 
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "paper") {
+        playerImage.src = "img/paper.png";
+        computerImage.src = "img/paper.png";
         playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`
         computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`
         firstResultAnnouncer.textContent = "It is a tie!"
         secondResultAnnouncer.textContent = "Paper ties with paper." 
     } else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "scissors") {
+        playerImage.src = "img/scissors.png";
+        computerImage.src = "img/scissors.png";
         playerScoreAnnouncer.textContent = `Player's score : ${playerScore}`
         computerScoreAnnouncer.textContent = `Computer's score : ${computerScore}`
         firstResultAnnouncer.textContent = "It is a tie!"
@@ -83,15 +106,19 @@ function checkResult () {
 
 function getFinalResult () {
     if (playerScore > computerScore) {
-        div.textContent = `You win the game! Player's score : ${playerScore} and computer's score : ${computerScore}`
-        btns.forEach(btn => {
-            btn.disabled = true;
-        });
+        modal.classList.add("open");
+        finalResult.textContent = "You won!"
+        // div.textContent = `You win the game! Player's score : ${playerScore} and computer's score : ${computerScore}`
+        // btns.forEach(btn => {
+        //     btn.disabled = true;
+        // });
     } else if (playerScore < computerScore) {
-        div.textContent = `The computer wins... Player's score : ${playerScore} and computer's score : ${computerScore}`
-        btns.forEach(btn => {
-            btn.disabled = true;
-        });
+        modal.classList.add("open");
+        finalResult.textContent = "You lose..."
+        // div.textContent = `The computer wins... Player's score : ${playerScore} and computer's score : ${computerScore}`
+        // btns.forEach(btn => {
+        //     btn.disabled = true;
+        // });
     }
 }
 
@@ -101,3 +128,7 @@ btns.forEach((btn) => {
         playRound(e.target.id, getComputerChoice ());
     })
 })
+
+closeBtn.addEventListener("click", () => {
+    location.reload();
+});

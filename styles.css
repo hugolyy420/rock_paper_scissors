@@ -6,21 +6,30 @@
 
 body {
     font-family: "roboto", "Arial", sans-serif;
-    height: 100%;
+    margin: 0;
+    background-color: #d9ebfa;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    flex: 1;
 }
 
 #header {
-    background-color: #88C5F6;
+    background-color: #5884a7;
     padding: 2% 10%;
-    display: flex;
-    justify-content: center;
+    text-align: center;
 }
 
-#intro-container, 
-#result-display-container,
-#btns-container,
-#footer {
-    background-color: #b4d8f6;;
+.footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 1%;
+    justify-content: end;
 }
 
 #header h1 {
@@ -35,11 +44,16 @@ body {
     gap: 2rem;
 }
 
+.para {
+    font-size: 24px;
+
+}
+
 #result-display-container {
     display: flex;
     justify-content: center;
     gap: 10%;
-    padding: 2% 10%;
+    padding: 1% 10%;
 }
 
 .score-picture-container {
@@ -52,19 +66,21 @@ body {
 .score-picture-container img {
     max-height: 150px;
     width: auto;
+    mix-blend-mode: multiply;
 }
 
 #btns-container {
     display: flex;
     justify-content: center;
     padding: 2% 10%;
-    gap: 5%
+    flex-wrap: wrap;
 }
 
 .btn img{
     max-height: 121px;
     width: auto;
     mix-blend-mode: multiply;
+    border-radius: 10px;
 }
 
 .btn {
@@ -72,9 +88,66 @@ body {
     width: auto;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
+    border: 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    flex: 0 1 auto;
+    margin: 3%;
 }
 
-#footer {
+.btn:hover {
+    transform: scale(1.2) perspective(1px);
+    transition: 0.9s
+}
+
+.btn:active {
+    background-color: rgb(165, 165, 165);
+    transition: none;
+}
+
+#closeModal {
+    background-image: linear-gradient(to right, #4f74b5, #34537b);
+    border-radius: 20px;
+    border: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 25px;
+}
+
+#closeModal:active {
+    opacity: 0.8;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.open {
+    opacity: 1;
+    z-index: 999;
+}
+
+.modal-inner {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    padding: 15px 25px;
     text-align: center;
-    padding: 1%; 
+    max-width: 400px;
+    height: auto;
+}
+
+.modal-inner h2 {
+    margin: 10px 0;
 }
